@@ -74,6 +74,8 @@
     if(_currentPageIndex.unsignedIntegerValue >= [self.dataSource pageCount:self]) {
         _currentPageIndex = [NSNumber numberWithUnsignedInteger:[self.dataSource pageCount:self]];
     }
+    _pageControl.numberOfPages = [_dataSource pageCount:self];
+    _pageControl.currentPage = _currentPageIndex.unsignedIntegerValue;
     [self configScrollViewContent];
 }
 
