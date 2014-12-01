@@ -66,6 +66,28 @@
     [self configScrollViewContent];
 }
 
+-(void)reloadPages {
+    [_pageMap enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [(UIView*)obj removeFromSuperview];
+    }];
+    [_pageMap removeAllObjects];
+    if(_currentPageIndex.unsignedIntegerValue >= [self.dataSource pageCount:self]) {
+        _currentPageIndex = [NSNumber numberWithUnsignedInteger:[self.dataSource pageCount:self]];
+    }
+    [self configScrollViewContent];
+}
+
+-(void)reloadPageAtIndex:(NSUInteger)index {
+    NSNumber* pageIndex = [NSNumber numberWithUnsignedInteger:index];
+    UIView* pageView = [_pageMap objectForKey:pageIndex];
+    
+    if(pageView) {
+        [pageView removeFromSuperview];
+        [_pageMap removeObjectForKey:pageIndex];
+    }
+    [self loadPage:pageIndex];
+}
+
 -(void)configScrollViewContent {
     if(!self.dataSource) {
         return;

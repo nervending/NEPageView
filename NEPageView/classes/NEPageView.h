@@ -22,5 +22,7 @@
 @property (nonatomic, assign) CGFloat indicatorBottomMargin;
 
 -(UIView*)dequePage;
+-(void)reloadPages;
+-(void)reloadPageAtIndex:(NSUInteger)index;
 
 @end
