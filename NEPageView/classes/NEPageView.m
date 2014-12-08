@@ -107,9 +107,13 @@
     if(index > 0) {
         [self loadPage:[NSNumber numberWithUnsignedInteger:index-1]];
     }
-    [self loadPage:pageIndex];
-    if(index + 1 < [self.dataSource pageCount:self]) {
-        [self loadPage:[NSNumber numberWithUnsignedInteger:index + 1]];
+
+    if(index < [self.dataSource pageCount:self]) {
+        [self loadPage:pageIndex];
+        
+        if(index + 1 < [self.dataSource pageCount:self]) {
+            [self loadPage:[NSNumber numberWithUnsignedInteger:index + 1]];
+        }
     }
 }
 
